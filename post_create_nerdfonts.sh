@@ -9,7 +9,7 @@ PATCHER_DIR=${PATCHER_DIR:-.font-build/patcher}
 if [ ! -f "$PATCHER_DIR/font-patcher" ]; then
     mkdir -p "$PATCHER_DIR"
     curl -sL -o "$PATCHER_DIR/FontPatcher.zip" \
-        https://github.com/ryanoasis/nerd-fonts/releases/latest/download/FontPatcher.zip
+        https://github.com/ryanoasis/nerd-fonts/releases/download/${NERD_FONTS_VERSION:-v3.5.1}/FontPatcher.zip
     unzip -qo "$PATCHER_DIR/FontPatcher.zip" -d "$PATCHER_DIR"
 fi
 

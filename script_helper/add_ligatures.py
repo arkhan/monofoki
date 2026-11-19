@@ -3,7 +3,7 @@
 Bake Fira Code ligatures into the Monofoki SFD sources (idempotent).
 
 Uses LigatureCreator from Ligaturizer (https://github.com/ToxicFrog/Ligaturizer),
-which must be checked out with the fira submodule. Default location is the
+which must be checked out (FIRA_DIR = dir with FiraCode-*.otf/.ttf, default the fira submodule). Default location is the
 parent repo (../../ relative to this repo when nested in Ligaturizer/fonts/).
 Override with LIGATURIZER_DIR=/path.
 
@@ -17,9 +17,10 @@ import fontforge
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIGA_DIR = os.environ.get('LIGATURIZER_DIR', os.path.abspath(os.path.join(ROOT, '..', '..')))
+FIRA_DIR = os.environ.get('FIRA_DIR', os.path.join(LIGA_DIR, 'fonts/fira/distr/otf'))
 sys.path.insert(0, LIGA_DIR)
 
-from ligaturize_fixed import LigatureCreator  # noqa: E402
+from ligaturize import LigatureCreator  # noqa: E402
 from ligatures import ligatures  # noqa: E402
 
 VARIANTS = [
@@ -37,7 +38,8 @@ for sfd, weight in VARIANTS:
         print('skip (ligatures already present): ' + sfd)
         font.close()
         continue
-    fira = fontforge.open(os.path.join(LIGA_DIR, 'fonts/fira/distr/otf/FiraCode-%s.otf' % weight))
+    base = os.path.join(FIRA_DIR, 'FiraCode-' + weight)
+    fira = fontforge.open(base + '.otf' if os.path.exists(base + '.otf') else base + '.ttf')
     creator = LigatureCreator(font, fira,
                               scale_character_glyphs_threshold=0.1,
                               copy_character_glyphs=False)

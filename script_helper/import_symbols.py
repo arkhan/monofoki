@@ -33,7 +33,7 @@ FONT_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__
 import subprocess
 DEJAVU_DIR   = os.path.dirname(subprocess.check_output(
     ['fc-match', '-f', '%{file}', 'DejaVu Sans Mono']).decode())
-CASCADIA_DIR = '/home/arkhan/.guix-profile/share/fonts/truetype'
+CASCADIA_DIR = os.environ.get('CASCADIA_DIR', '/home/arkhan/.guix-profile/share/fonts/truetype')
 
 # (codepoint, source_tag)
 # source_tag: 'dv'=DejaVu, 'cc'=Cascadia
