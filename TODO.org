@@ -1,0 +1,58 @@
+#+TITLE: Monofoki – Mejoras pendientes
+#+AUTHOR: Marvin Dostal
+#+STARTUP: overview
+
+* Cobertura de glyphs para IDEs y Linux
+
+** TODO Ejecutar nerd-font-patcher completo
+Actualmente solo existen los 7 símbolos Powerline básicos (U+E0A0–U+E0B3).
+El PUA (U+E000+) está completamente vacío.
+- Usar ~post_create_nerdfonts.sh~ sobre los exports con el patcher v3 completo
+- Resultado esperado: ~3600 iconos (eza, lsd, starship, nvim-tree, lualine, etc.)
+
+** DONE Añadir símbolos Powerline Extra (U+E0B4–U+E0D4)
+Los 33 glyphs de formas redondeadas, flame y otros separadores de Powerline
+no están presentes. Dibujarlos en el SFD o incluirlos vía patcher.
+| U+E0B4 | Powerline round right       |
+| U+E0B5 | Powerline round right thin  |
+| U+E0B6 | Powerline round left        |
+| U+E0B7 | Powerline round left thin   |
+| U+E0C0 | Powerline flame right       |
+| U+E0C2 | Powerline flame left        |
+| ...    | (hasta U+E0D4)              |
+
+** DONE Añadir símbolos de teclado y control
+Usados en documentación de IDEs, keymaps, man pages y herramientas como ~bat~.
+| Codepoint | Glyph | Nombre                        |
+|-----------+-------+-------------------------------|
+| U+238B    | ⎋     | BROKEN CIRCLE (Escape)        |
+| U+2423    | ␣     | OPEN BOX (Space visible)      |
+| U+2303    | ⌃     | UP ARROWHEAD (Ctrl)           |
+| U+2318    | ⌘     | PLACE OF INTEREST SIGN (Cmd)  |
+| U+2325    | ⌥     | OPTION KEY                    |
+| U+21E5    | ⇥     | RIGHTWARDS ARROW TO BAR (Tab) |
+| U+2400    | ␀     | SYMBOL FOR NULL               |
+| U+2409    | ␉     | SYMBOL FOR HORIZONTAL TAB     |
+| U+240A    | ␊     | SYMBOL FOR LINE FEED          |
+| U+240D    | ␍     | SYMBOL FOR CARRIAGE RETURN    |
+
+** DONE Añadir flechas faltantes
+Usadas en prompts de shell (starship, oh-my-zsh, fish) y herramientas de diff.
+| Codepoint | Glyph | Nombre                              |
+|-----------+-------+-------------------------------------|
+| U+21B5    | ↵     | DOWNWARDS ARROW WITH CORNER LEFT    |
+| U+27A1    | ➡     | BLACK RIGHTWARDS ARROW              |
+| U+2794    | ➔     | HEAVY WIDE-HEADED RIGHTWARDS ARROW  |
+| U+2799    | ➙     | HEAVY RIGHTWARDS ARROW              |
+| U+279E    | ➞     | HEAVY TRIANGLE-HEADED RIGHTWARDS    |
+
+** DONE Añadir currency modernas
+| Codepoint | Glyph | Nombre               |
+|-----------+-------+----------------------|
+| U+20B9    | ₹     | INDIAN RUPEE SIGN    |
+| U+20BF    | ₿     | BITCOIN SIGN         |
+| U+20BA    | ₺     | TURKISH LIRA SIGN    |
+
+** DONE Añadir ☆ (U+2606) y ❤ (U+2764)
+- U+2606 ☆ WHITE STAR — usado en git status, starship, indicadores de favoritos
+- U+2764 ❤ HEAVY HEART EXCLAMATION — usado en prompts y herramientas de terminal

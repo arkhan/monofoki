@@ -37,6 +37,23 @@ https://scripts.sil.org/OFL""")
 if ("English (US)", "SubFamily", "Bold-Italic") in font.sfnt_names:
   font.appendSFNTName("English (US)", "SubFamily", "Bold Italic")
 
+# Derive macstyle from Weight and ItalicAngle (always explicit in SFD).
+# os2_stylemap is not stored in SFD and returns -1 before export.
+is_bold   = font.os2_weight >= 700
+is_italic = font.italicangle != 0
+font.macstyle = (1 if is_bold else 0) | (2 if is_italic else 0)
+
+# nameID 16/17 (PreferredFamily / PreferredSubfamily) let Windows and IDEs
+# group all 4 variants under one family name correctly
+subfam = ""
+for entry in font.sfnt_names:
+  if entry[0] == "English (US)" and entry[1] == "SubFamily":
+    subfam = entry[2]
+    break
+font.appendSFNTName("English (US)", "Preferred Family",  "Monofoki")
+font.appendSFNTName("English (US)", "Preferred Styles",  subfam)
+
+
 font.generate("$export")
 END
 

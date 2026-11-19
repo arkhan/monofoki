@@ -8,7 +8,7 @@
 # I now want to push binaries as well!
 #
 # # No Binaries
-# 
+#
 # *.ttf
 # *.ttc
 # *.otf
@@ -503,3 +503,8 @@ TSWLatexianTemp*
 /export
 export.zip
 
+/.agent-shell/
+
+# MemPalace per-project files (issue #185)
+mempalace.yaml
+entities.json
